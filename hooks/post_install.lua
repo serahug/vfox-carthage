@@ -22,9 +22,9 @@ function PLUGIN:PostInstall(ctx)
         error("Could not find Carthage.pkg in " .. rootPath)
     end
 
-    -- Create extraction directory
+    -- Clean extraction directory
     local expand_dir = rootPath .. "/expanded"
-    os.execute(string.format('mkdir -p "%s"', expand_dir))
+    os.execute(string.format('rm -rf "%s"', expand_dir))
 
     -- Expand the .pkg file using pkgutil
     local expand_cmd = string.format('pkgutil --expand "%s" "%s"', pkg_path, expand_dir)
